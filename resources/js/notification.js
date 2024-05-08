@@ -36,8 +36,7 @@ $(document).ready(function () {
         let currentCountUnread = $('#new_notification_dot').text()
         if (currentCountUnread === '9+') {
             $('#new_notification_dot').show()
-        }
-        else if (parseInt(currentCountUnread) < 9) {
+        } else if (parseInt(currentCountUnread) < 9) {
             $('#new_notification_dot').text(parseInt(currentCountUnread) + 1)
             $('#new_notification_dot').show()
         } else {

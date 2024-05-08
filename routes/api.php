@@ -32,18 +32,18 @@ Route::middleware('auth:sanctum')
                         Route::get('countUnread', 'countUnread');
                         Route::post('markAllAsRead', 'markAllAsRead');
                     });
-              
+
                 Route::prefix('dashboard')
-                  ->controller(DashboardController::class)
-                  ->group(function () {
-                      Route::get('totalDoses', 'getTotalDoses')
+                    ->controller(DashboardController::class)
+                    ->group(function () {
+                        Route::get('totalDoses', 'getTotalDoses')
                         ->name('dashboard.total_dose');
-                      Route::get('totalPeopleWithOnlyFirstDose', 'getTotalPeopleWithOnlyFirstDose')
+                        Route::get('totalPeopleWithOnlyFirstDose', 'getTotalPeopleWithOnlyFirstDose')
                         ->name('dashboard.total_people_with_only_first_dose');
-                      Route::get('totalPeopleWithOverOneDose', 'getTotalPeopleWithOverOneDose')
+                        Route::get('totalPeopleWithOverOneDose', 'getTotalPeopleWithOverOneDose')
                         ->name('dashboard.total_people_with_over_one_dose');
-                      Route::get('totalPeopleWithNoDose', 'getTotalPeopleWithNoDose')
+                        Route::get('totalPeopleWithNoDose', 'getTotalPeopleWithNoDose')
                         ->name('dashboard.total_people_with_no_dose');
-                  });
+                    });
             });
     });
