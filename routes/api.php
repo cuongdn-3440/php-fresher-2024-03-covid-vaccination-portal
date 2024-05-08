@@ -19,9 +19,17 @@ Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'current
 // api/v1
 Route::middleware('auth:sanctum')
     ->group(function () {
-        Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function () {
-            Route::apiResource('businesses', BusinessController::class);
-            Route::apiResource('schedules', ScheduleController::class);
-            Route::apiResource('notifications', NotificationController::class);
-        });
+        Route::prefix('v1')
+            ->namespace('App\Http\Controllers\Api\V1')
+            ->group(function () {
+                Route::apiResource('businesses', BusinessController::class);
+                Route::apiResource('schedules', ScheduleController::class);
+                Route::prefix('notifications')
+                    ->controller('NotificationController')
+                    ->group(function () {
+                        Route::get('', 'index');
+                        Route::get('countUnread', 'countUnread');
+                        Route::post('markAllAsRead', 'markAllAsRead');
+                    });
+            });
     });
